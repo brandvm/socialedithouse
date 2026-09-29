@@ -1,0 +1,17 @@
+
+  /* any p NOT immediately preceded by another p */
+  .rte p em {
+    font-size: 4.5em;
+    line-height: 0.8;
+    display: flex;
+    float: left;
+    margin-right: 0.08em;
+    margin-top: 0.05em;
+    font-family: var(--_typography-role---font-family--display);
+    color: var(--_colors---text-color--default);
+    font-weight: var(--_typography-scale---weight--light);
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+

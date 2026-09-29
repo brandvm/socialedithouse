@@ -1,0 +1,25 @@
+
+  .journal-item.is_main-item:nth-child(1),
+  .journal-item.is_main-item:nth-child(2),
+  .journal-item.is_main-item:nth-child(5n + 6),
+  .journal-item.is_main-item:nth-child(5n + 7) {
+    grid-column: span 6;
+  }
+
+  .journal-item.is_main-item:nth-child(1) .journal-card-visual-w,
+  .journal-item.is_main-item:nth-child(2) .journal-card-visual-w,
+  .journal-item.is_main-item:nth-child(5n + 6) .journal-card-visual-w,
+  .journal-item.is_main-item:nth-child(5n + 7) .journal-card-visual-w {
+    aspect-ratio: 630 / 480;
+  }
+
+  /* Tablet: span 8 */
+  @media (max-width: 991px) {
+    .journal-item.is_main-item {
+      grid-column: span 4 !important;
+    }
+
+    .journal-item.is_main-item .journal-card-visual-w {
+      aspect-ratio: 630 / 480 !important;
+    }
+  }

@@ -1,0 +1,32 @@
+<!-- Site settings > Custom code > Head code -->
+<meta name="theme-color" content="#F5F0E8">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/brandvm/socialedithouse@v1.0.0/socialedit-main.css">
+
+<!-- Keep this small fallback inline so a failed CDN cannot trap the visitor. -->
+<style>
+  html body [data-preloader] { display: none !important; }
+  html.seh-intro-pending body [data-preloader] {
+    display: flex !important;
+    opacity: 1;
+    transition: opacity 200ms ease;
+  }
+  html.seh-intro-pending.seh-intro-exit body [data-preloader] {
+    opacity: 0;
+    pointer-events: none;
+  }
+  @media (max-width: 991px), (pointer: coarse), (prefers-reduced-motion: reduce) {
+    html.seh-intro-pending body [data-preloader] { display: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const root = document.documentElement;
+    if (matchMedia('(max-width: 991px), (pointer: coarse), (prefers-reduced-motion: reduce)').matches) return;
+    root.classList.add('seh-intro-pending');
+    setTimeout(() => {
+      root.classList.remove('seh-intro-pending', 'seh-intro-exit', 'is-loading');
+      window.dispatchEvent(new Event('seh:intro-timeout'));
+    }, 2200);
+  })();
+</script>

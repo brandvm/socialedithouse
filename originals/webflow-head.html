@@ -1,0 +1,48 @@
+<!-- Disables Zoom on Input Fields -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<!-- Theme Color Browser -->
+<meta name="theme-color" content="#F5F0E8" />
+
+<!-- Finsweet Attributes -->
+
+<!-- Preloading Fonts 
+<link rel="preload" href="" as="font" type="font/woff2" crossorigin> -->
+
+<style>
+  /* Hiding Dev Supports */
+  .g-embed-code,
+  /* .g-grid-guide, */
+  .w-webflow-badge,
+  .cms-filter {
+    z-index: -99999 !important;
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  .preloader{
+    display: flex !important;
+  }
+
+  /* --------- Lenis Smooth Scrolling --------- */
+  html.lenis {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  /* Lock scroll before Lenis/JS take over */
+  html.is-loading,
+  html.is-loading body {
+    overflow: hidden;
+    height: 100%;
+  }
+</style>

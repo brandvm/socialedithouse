@@ -1,0 +1,528 @@
+/* ================================================
+Blankboard Studio - Global Styles
+================================================ */
+
+/* ------------------------------------------------
+00. Webflow font-face override (Aeonik default ss02)
+Place here so it loads after Webflow CSS when added in Head code
+------------------------------------------------ */
+
+/* ------------------------------------------------
+01. Token Hub
+------------------------------------------------ */
+:root {
+  /* Scaling System */
+  --size-unit: 16; /* Body font-size in design units (no px) */
+  --size-container-ideal: 1440;
+  --size-container-min: 1280px;
+  --size-container-max: 1920px;
+
+  --size-container: clamp(
+    var(--size-container-min),
+    100vw,
+    var(--size-container-max)
+  );
+
+  --size-font: calc(
+    var(--size-container) / (var(--size-container-ideal) / var(--size-unit))
+  );
+
+  font-size: var(--size-font);
+
+  /* Color aliases (still uses your existing --_colors---* vars) */
+  --color-accent: var(--_colors---accent, #5498dc);
+  --color-bg-dark: var(--_colors---bg--dark, #0b0e14);
+  --color-text-light: var(--_colors---text-color--light, #f2f5ff);
+
+  /* Existing tokens (kept as-is) */
+  --base---box-opacity: 50%;
+  --shadow-blur: 3em;
+  --address-icon-fill: var(--color-accent);
+
+  /* Motion + timing */
+  --ease-bbs: cubic-bezier(0.65, 0.05, 0, 1);
+  --dur-bbs: 735ms;
+
+  /* Underline effect */
+  --underline-top: 100%;
+  --underline-height: 1px;
+  --inline-underline-opacity: 0.48;
+
+  /* Loops */
+  --loop-x-duration: 60s;
+  --loop-y-duration: 32s;
+
+  /* SVG dash */
+  --svg-dash-duration: 8s;
+  --svg-dash-offset: 600;
+
+  /* Zoom */
+  --image-zoom-scale: 1.12;
+}
+
+/* Tablet */
+@media screen and (max-width: 991px) {
+  :root {
+    --size-container-ideal: 834;
+    --size-container-min: 768px;
+    --size-container-max: 991px;
+  }
+}
+
+/* Mobile Landscape */
+@media screen and (max-width: 767px) {
+  :root {
+    --size-container-ideal: 430;
+    --size-container-min: 480px;
+    --size-container-max: 767px;
+  }
+}
+
+/* Mobile Portrait */
+@media screen and (max-width: 479px) {
+  :root {
+    --size-container-ideal: 430;
+    --size-container-min: 320px;
+    --size-container-max: 428px;
+  }
+}
+
+/* ------------------------------------------------
+02. Color System: OKLCH and Display-P3 Fallback
+------------------------------------------------ */
+@supports (color: oklch(50% 0.2 280)) {
+  :root {
+    /* Add OKLCH tokens here if needed */
+
+    --_colors---brand--black: oklch(21.28% 0.0154 34.52);
+    --_colors---brand--sepia: oklch(61.71% 0.0426 25.75);
+    --_colors---brand--linen: oklch(72.99% 0.046 25.75);
+    --_colors---brand--bond: oklch(95.98% 0.039 33.26);
+    --_colors---brand--white: oklch(100% 0 none);
+    --_colors---warm-neutral-extension--bond-warm: oklch(94.62% 0.0389 27.59);
+    --_colors---warm-neutral-extension--mist: oklch(88.42% 0.0407 27.2);
+    --_colors---warm-neutral-extension--clay: oklch(51.58% 0.0779 24.25);
+    --_colors---warm-neutral-extension--shadow: oklch(42.02% 0.0337 25.71);
+    --_colors---warm-neutral-extension--bond-deep: oklch(91.88% 0.0382 27.55);
+    --_colors---background--soft: oklch(92.04% 0.0379 33.43);
+    --color-accent: oklch(66.77% 0.1054 219.03);
+    --color-bg-dark: oklch(16.41% 0.0073 239.77);
+    --color-text-light: oklch(97.4% 0.0207 16.01);
+
+    /* Gradient scrims */
+    --_colors---gradient--scrim-top: oklch(21.28% 0.0154 34.52 / 0);
+    --_colors---gradient--scrim-bottom: oklch(21.28% 0.0154 34.52 / 0.549);
+
+    /* Alpha — light */
+    --_colors---alpha--light-100: oklch(100% 0 none / 0.4);
+    --_colors---alpha--light-200: oklch(100% 0 none / 0.502);
+    --_colors---alpha--light-300: oklch(100% 0 none / 0.651);
+    --_colors---alpha--light-400: oklch(100% 0 none / 0.8);
+
+    /* Alpha — dark */
+    --_colors---alpha--dark-100: oklch(21.28% 0.0154 34.52 / 0.4);
+    --_colors---alpha--dark-200: oklch(21.28% 0.0154 34.52 / 0.502);
+    --_colors---alpha--dark-300: oklch(21.28% 0.0154 34.52 / 0.651);
+    --_colors---alpha--dark-400: oklch(21.28% 0.0154 34.52 / 0.8);
+
+    /* Alpha — overlays */
+    --_colors---alpha--overlay-24: oklch(21.28% 0.0154 34.52 / 0.2392);
+    --_colors---alpha--overlay-40: oklch(21.28% 0.0154 34.52 / 0.4);
+
+    /* Alpha — borders */
+    --_colors---alpha--border-faint: oklch(21.28% 0.0154 34.52 / 0.0784);
+    --_colors---alpha--border-soft: oklch(21.28% 0.0154 34.52 / 0.1216);
+    --_colors---alpha--border-on-dark: oklch(100% 0 none / 0.1216);
+
+    /* Alpha — foreground */
+    --_colors---alpha--fg-muted: oklch(21.28% 0.0154 34.52 / 0.6);
+    --_colors---alpha--fg-quiet: oklch(21.28% 0.0154 34.52 / 0.4);
+    --_colors---alpha--fg-on-dark: oklch(100% 0 none);
+    --_colors---alpha--fg-on-dark-quiet: oklch(100% 0 none / 0.702);
+
+    /* Alpha — rules & fields */
+    --_colors---alpha--rule: oklch(72.99% 0.046 25.75 / 0.4);
+    --_colors---alpha--rule-strong: oklch(72.99% 0.046 25.75 / 0.702);
+    --_colors---alpha--field: oklch(72.99% 0.046 25.75 / 0.549);
+    --_colors---alpha--rule-on-dark: oklch(95.98% 0.039 33.26 / 0.302);
+  }
+}
+
+@supports (color: color(display-p3 1 0 0)) {
+  :root {
+    /* Add Display-P3 tokens here if needed */
+
+    --_colors---brand--black: color(display-p3 0.1411 0.0755 0.0737);
+    --_colors---brand--sepia: color(display-p3 0.5765 0.502 0.4784);
+    --_colors---brand--linen: color(display-p3 0.7137 0.6353 0.6118);
+    --_colors---brand--bond: color(display-p3 0.9608 0.9412 0.9098);
+    --_colors---brand--white: color(display-p3 1 1 1);
+    --_colors---warm-neutral-extension--bond-warm: color(
+      display-p3 0.9529 0.9176 0.9059
+    );
+    --_colors---warm-neutral-extension--mist: color(
+      display-p3 0.8824 0.8353 0.8196
+    );
+    --_colors---warm-neutral-extension--clay: color(
+      display-p3 0.5373 0.3529 0.2941
+    );
+    --_colors---warm-neutral-extension--shadow: color(
+      display-p3 0.3451 0.2863 0.2667
+    );
+    --_colors---warm-neutral-extension--bond-deep: color(
+      display-p3 0.9176 0.8824 0.8706
+    );
+    --_colors---background--soft: color(display-p3 0.9098 0.8902 0.8588);
+    --color-accent: color(display-p3 0.3216 0.5961 0.8627);
+    --color-bg-dark: color(display-p3 0.0431 0.0549 0.0784);
+    --color-text-light: color(display-p3 0.949 0.9608 1);
+
+    /* Gradient scrims */
+    --_colors---gradient--scrim-top: color(display-p3 0.1411 0.0755 0.0737 / 0);
+    --_colors---gradient--scrim-bottom: color(
+      display-p3 0.1411 0.0755 0.0737 / 0.549
+    );
+
+    /* Alpha — light */
+    --_colors---alpha--light-100: color(display-p3 1 1 1 / 0.4);
+    --_colors---alpha--light-200: color(display-p3 1 1 1 / 0.502);
+    --_colors---alpha--light-300: color(display-p3 1 1 1 / 0.651);
+    --_colors---alpha--light-400: color(display-p3 1 1 1 / 0.8);
+
+    /* Alpha — dark */
+    --_colors---alpha--dark-100: color(display-p3 0.1411 0.0755 0.0737 / 0.4);
+    --_colors---alpha--dark-200: color(display-p3 0.1411 0.0755 0.0737 / 0.502);
+    --_colors---alpha--dark-300: color(display-p3 0.1411 0.0755 0.0737 / 0.651);
+    --_colors---alpha--dark-400: color(display-p3 0.1411 0.0755 0.0737 / 0.8);
+
+    /* Alpha — overlays */
+    --_colors---alpha--overlay-24: color(
+      display-p3 0.1411 0.0755 0.0737 / 0.2392
+    );
+    --_colors---alpha--overlay-40: color(display-p3 0.1411 0.0755 0.0737 / 0.4);
+
+    /* Alpha — borders */
+    --_colors---alpha--border-faint: color(
+      display-p3 0.1411 0.0755 0.0737 / 0.0784
+    );
+    --_colors---alpha--border-soft: color(
+      display-p3 0.1411 0.0755 0.0737 / 0.1216
+    );
+    --_colors---alpha--border-on-dark: color(display-p3 1 1 1 / 0.1216);
+
+    /* Alpha — foreground */
+    --_colors---alpha--fg-muted: color(display-p3 0.1411 0.0755 0.0737 / 0.6);
+    --_colors---alpha--fg-quiet: color(display-p3 0.1411 0.0755 0.0737 / 0.4);
+    --_colors---alpha--fg-on-dark: color(display-p3 1 1 1);
+    --_colors---alpha--fg-on-dark-quiet: color(display-p3 1 1 1 / 0.702);
+
+    /* Alpha — rules & fields */
+    --_colors---alpha--rule: color(display-p3 0.7137 0.6353 0.6118 / 0.4);
+    --_colors---alpha--rule-strong: color(
+      display-p3 0.7137 0.6353 0.6118 / 0.702
+    );
+    --_colors---alpha--field: color(display-p3 0.7137 0.6353 0.6118 / 0.549);
+    --_colors---alpha--rule-on-dark: color(
+      display-p3 0.9608 0.9412 0.9098 / 0.302
+    );
+  }
+}
+
+/* ------------------------------------------------
+03. Reset & Box Model
+------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+  text-size-adjust: 100%;
+  text-decoration-skip-ink: auto;
+  text-decoration-thickness: 8%;
+  text-underline-offset: -8%;
+  text-underline-position: from-font;
+}
+
+html {
+  scroll-behavior: initial;
+  scrollbar-width: none; /* Firefox */
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  width: 100vw;
+
+  /* IMPORTANT: one declaration only (second line was overriding the first) */
+  font-feature-settings: "liga" 1, "calt" 1;
+
+  -ms-overflow-style: none; /* IE & Edge */
+}
+
+/* Hide scrollbars universally */
+body::-webkit-scrollbar,
+body ::-webkit-scrollbar {
+  display: none;
+}
+
+svg {
+  max-width: none;
+  height: auto;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+a {
+  color: inherit;
+}
+
+/* ------------------------------------------------
+04. Typography Utilities
+------------------------------------------------ */
+/* Same behavior, lower specificity so Webflow overrides stay easy */
+.rte :where(:first-child, div:first-child > :first-child),
+.content-rte :where(:first-child, div:first-child > :first-child),
+.case-study :where(:first-child, div:first-child > :first-child) {
+  margin-top: 0 !important;
+}
+.rte :where(:last-child, div:first-child > :last-child),
+.content-rte :where(:last-child, div:first-child > :last-child),
+.case-study :where(:last-child, div:first-child > :last-child) {
+  margin-bottom: 0 !important;
+}
+
+.w-richtext::after,
+.w-richtext::before {
+  display: none;
+}
+
+/* ------------------------------------------------
+05. Utility Attributes
+------------------------------------------------ */
+[scroll-show="false"] {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+[scroll-show="false"]::-webkit-scrollbar {
+  display: none;
+}
+
+/* Truncate Text Utility (single core rule + variable override) */
+[data-truncate] {
+  --truncate-lines: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: var(--truncate-lines);
+}
+
+[data-truncate="1"] {
+  --truncate-lines: 1;
+}
+[data-truncate="2"] {
+  --truncate-lines: 2;
+}
+
+/* Selection Highlight */
+@supports (background-color: color-mix(in srgb, black 10%, transparent)) {
+  ::selection {
+    background-color: color-mix(in srgb, currentColor 12%, transparent);
+    color: var(--color-accent);
+    text-shadow: none;
+  }
+  ::-moz-selection {
+    background-color: color-mix(in srgb, currentColor 12%, transparent);
+    color: var(--color-accent);
+    text-shadow: none;
+  }
+}
+
+[data-theme="dark"] {
+  background-color: var(--_colors---bg--dark);
+  color: var(--_colors---text--light);
+}
+[data-theme="dark-transparent"] {
+  color: var(--_colors---text--light) !important;
+  background-color: transparent;
+}
+
+[data-gradient] {
+}
+
+[data-gradient-text] {
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-repeat: repeat-x;
+  -webkit-text-fill-color: transparent;
+  color: inherit;
+}
+
+/* ------------------------------------------------
+06. Interactive Link Effects
+------------------------------------------------ */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  top: var(--underline-top);
+  left: 0%;
+  height: var(--underline-height);
+  width: 0%;
+  background: currentColor;
+  transition: width var(--dur-bbs) var(--ease-bbs);
+  pointer-events: none;
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+.link-underline:not(:hover)::after {
+  left: auto;
+  right: 0%;
+  width: 0%;
+}
+
+.inline-link-underline {
+  position: relative;
+  --underline-top: 96%;
+  --inline-underline-opacity: 0.24;
+}
+.inline-link-underline::after {
+  content: "";
+  position: absolute;
+  top: var(--underline-top);
+  left: 0%;
+  height: var(--underline-height);
+  width: 100%;
+  background: currentColor;
+  opacity: var(--inline-underline-opacity);
+  transition: opacity var(--dur-bbs) var(--ease-bbs);
+  pointer-events: none;
+}
+.inline-link-underline:hover::after {
+  opacity: 1;
+}
+
+/* ------------------------------------------------
+07. Animations
+------------------------------------------------ */
+@keyframes loopX {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes loopY {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.loop-animate-x {
+  animation: loopX var(--loop-x-duration) linear infinite;
+  will-change: transform;
+}
+.loop-animate-y {
+  animation: loopY var(--loop-y-duration) linear infinite;
+  will-change: transform;
+}
+.loop-animate-x.reverse {
+  animation: loopX var(--loop-x-duration) linear infinite reverse;
+  will-change: transform;
+}
+.loop-animate-y.reverse {
+  animation: loopY var(--loop-y-duration) linear infinite reverse;
+  will-change: transform;
+}
+
+.svg-animate-line {
+  stroke-dasharray: 10 10 !important;
+  animation: svgDash var(--svg-dash-duration) linear infinite;
+}
+.svg-animate-line.reverse {
+  animation: svgDash var(--svg-dash-duration) linear infinite reverse;
+}
+
+@keyframes svgDash {
+  to {
+    stroke-dashoffset: var(--svg-dash-offset);
+  }
+}
+
+/* Motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .loop-animate-x,
+  .loop-animate-y,
+  .svg-animate-line {
+    animation: none !important;
+  }
+
+  .image-w img,
+  .link-underline::after,
+  .inline-link-underline::after {
+    transition-duration: 1ms !important;
+  }
+}
+
+/* ------------------------------------------------
+08. Components / Patterns
+------------------------------------------------ */
+.image-w img {
+  transition: transform var(--dur-bbs) var(--ease-bbs);
+}
+.image-w:hover img {
+  transform: scale(var(--image-zoom-scale));
+}
+
+.s-wrapper::before,
+.s-wrapper::after {
+  display: none;
+}
+
+.filter-radio-button.w--redirected-checked ~ .label-filter-menu {
+}
+
+/* Active-tab highlight (Swiper adds this class to the active thumb) */
+.sector-s-main .swiper.sector-thumb .swiper-slide-thumb-active .d5 {
+  /* your active styling, e.g. */
+  opacity: 1;
+}
+
+.s-g-nav.is-shrunk {
+  --_base---navbar--height: 4em;
+  background-color: var(--_colors---background--light);
+}
+
+.s-g-nav.is-shrunk .g-nav-brand-logo {
+  height: 3em;
+}
+
+.sw-g-nav.is-shrunk {
+  border-bottom-color: var(--_colors---utility--u-muted-024);
+}
+
+.sector-tab-link.w--current .sector-tab-dot,
+.services-anchor-link.w--current .service-anchor-dot {
+  transform: translateX(0em);
+  opacity: 1;
+}
+
+[data-blur-in] {
+  transition: filter var(--ease-bbs) var(--dur-bbs);
+}
+
+.card-hover {
+  transition-property: opacity, backdrop-filter;
+  transition-duration: 735ms, 1200ms;
+  transition-timing-function: cubic-bezier(0.64, 0.05, 0, 1),
+    cubic-bezier(0.64, 0.05, 0, 1);
+}

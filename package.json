@@ -1,0 +1,7 @@
+{
+  "name": "socialedithouse",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Custom CSS and JavaScript for The Social Edit House Webflow site",
+  "scripts": { "check": "node --check socialedit-main.js", "test": "node --test tests/intro.test.cjs" }
+}

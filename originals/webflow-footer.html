@@ -1,0 +1,30 @@
+<script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js"></script>
+<script>
+  let lenis;
+  if (!window.Webflow?.env?.('editor')) {
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+    window.lenis = lenis;
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+  }
+</script>
+
+<!-- Code Sandbox - Script -->
+<!-- Lottie -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+<script src="https://8n3dq9.csb.app/SocialEditHouse/socialedit-main.js" defer></script>

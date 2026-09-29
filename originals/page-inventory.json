@@ -1,0 +1,44 @@
+[
+  {
+    "page": "https://www.thesocialedithouse.com/",
+    "additionalCustomStyles": []
+  },
+  {
+    "page": "https://www.thesocialedithouse.com/contact",
+    "additionalCustomStyles": [
+      "journal-grid.css"
+    ]
+  },
+  {
+    "page": "https://www.thesocialedithouse.com/journal",
+    "additionalCustomStyles": [
+      "journal-grid.css"
+    ]
+  },
+  {
+    "page": "https://www.thesocialedithouse.com/journal/ai-is-not-your-strategist-and-thats-the-whole-point",
+    "additionalCustomStyles": [
+      "journal-dropcap.css"
+    ]
+  },
+  {
+    "page": "https://www.thesocialedithouse.com/journal/fashion-week-x-wavytalk-the-styling-lounge",
+    "additionalCustomStyles": [
+      "journal-dropcap.css"
+    ]
+  },
+  {
+    "page": "https://www.thesocialedithouse.com/journal/taste-is-the-last-thing-that-cant-be-automated",
+    "additionalCustomStyles": [
+      "journal-dropcap.css"
+    ]
+  },
+  {
+    "page": "https://www.thesocialedithouse.com/services",
+    "additionalCustomStyles": []
+  },
+  {
+    "page": "https://www.thesocialedithouse.com/studio",
+    "additionalCustomStyles": []
+  }
+]
